@@ -22,8 +22,8 @@ return {
         ensure_installed = {
           "cssls",
           "lua_ls",
-          "quick_lint_js",
-          "pylsp",
+          "tsserver",
+          "pyright"
         },
         automatic_install = true
       })

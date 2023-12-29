@@ -20,7 +20,7 @@ return {
       },
     snippet = {
       expand = function(args)
-        luasnip.lsp_expland(args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     sources = cmp.config.sources({

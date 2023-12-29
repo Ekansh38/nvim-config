@@ -66,24 +66,25 @@ return {
 
 
     -- Configure CSS language server
-    lspconfig.cssls.setup({
+    lspconfig["cssls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
     })
 
-    lspconfig["pylsp"].setup({
+    lspconfig["pyright"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
 
-    lspconfig["emmet-ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = {"html", "css" }
-    })
 
-    lspconfig["quick_lint_js"].setup({
+    -- lspconfig["emmet-ls"].setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   filetypes = {"html", "css" }
+    -- })
+    --
+    lspconfig["tsserver"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
