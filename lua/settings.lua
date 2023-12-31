@@ -1,13 +1,12 @@
 local opt = vim.opt
 
-opt.number = true
+opt.guicursor = ""
+opt.nu = true
 opt.relativenumber = true
-opt.wrap = false
-opt.mouse = a
-opt.cursorcolumn = false
-opt.autoindent = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
 opt.expandtab = true
-opt.tabstop = 2
-opt.shiftwidth = 2
-
-
+opt.smartindent = true
+opt.wrap = false
+opt.termguicolors = true

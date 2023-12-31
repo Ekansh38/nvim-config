@@ -23,7 +23,7 @@ return {
           "cssls",
           "lua_ls",
           "tsserver",
-          "pyright"
+          "pyright",
         },
         automatic_install = true
       })

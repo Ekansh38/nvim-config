@@ -71,19 +71,17 @@ return {
     on_attach = on_attach,
     })
 
-    lspconfig["pyright"].setup({
+    lspconfig["pylsp"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
 
-
-    -- lspconfig["emmet-ls"].setup({
+    -- lspconfig["pyright"].setup({
     --   capabilities = capabilities,
     --   on_attach = on_attach,
-    --   filetypes = {"html", "css" }
     -- })
-    --
+
     lspconfig["tsserver"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
