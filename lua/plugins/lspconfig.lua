@@ -69,11 +69,26 @@ return {
     lspconfig["cssls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
+    filetypes = {"html", "htmldjango", "css"}
+    })
+
+
+    lspconfig["html"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = {"html", "htmldjango", "css"}
+    })
+
+
+    lspconfig["rust_analyzer"].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
     })
 
     lspconfig["pylsp"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = {"python"}
     })
 
 

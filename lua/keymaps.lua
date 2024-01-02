@@ -5,4 +5,5 @@ vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', {noremap = true, silent = tr
 vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {noremap = true, silent = true})
 
-
+vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-u>', '<C-u>zz', { noremap = true, silent = true })

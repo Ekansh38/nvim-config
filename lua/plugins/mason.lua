@@ -24,6 +24,8 @@ return {
           "lua_ls",
           "tsserver",
           "pyright",
+          "html",
+          "rust_analyzer"
         },
         automatic_install = true
       })
