@@ -1,0 +1,19 @@
+LSP KEYBINDINGS
+===============
+
+NAVIGATION
+  gd           - Jump to definition (where the symbol is defined)
+  gr           - List all references (every place the symbol is used)
+  gi           - Jump to implementation (concrete impl, useful for interfaces)
+  K            - Show hover documentation (type info, docstrings, signatures)
+
+REFACTORING
+  <space>rn    - Rename symbol project-wide (renames all references atomically)
+  <space>ca    - Show code actions (fixes, imports, refactors suggested by LSP)
+  <space>f     - Format buffer (uses LSP formatter, e.g. ruff for Python, gopls for Go)
+
+DIAGNOSTICS (ERRORS & WARNINGS)
+  ]d           - Jump to next diagnostic 
+  [d           - Jump to previous diagnostic
+  <space>e     - Show diagnostic float 
+
