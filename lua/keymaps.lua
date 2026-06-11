@@ -1,7 +1,7 @@
--- Clear search highlights
+-- clear search highlights
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Telescope (fuzzy finder)
+-- telescope
 vim.keymap.set('n', '<space>ff', function() require('telescope.builtin').find_files() end, { desc = 'Find files' })
 vim.keymap.set('n', '<space>fg', function() require('telescope.builtin').live_grep() end, { desc = 'Live grep' })
 
@@ -16,40 +16,38 @@ end, { desc = 'Live grep (literal)' })
 vim.keymap.set('n', '<space>fb', function() require('telescope.builtin').buffers() end, { desc = 'Find buffers' })
 vim.keymap.set('n', '<space>fh', function() require('telescope.builtin').help_tags() end, { desc = 'Find help tags' })
 
--- Oil (file explorer) — press - to open parent dir, q to close
+-- oil
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
--- In line navigation
-
-vim.api.nvim_create_autocmd('FileType', {
-    pattern = { 'markdown', 'text', 'txt' },
-    callback = function()
-        vim.keymap.set({'n', 'o', 'x'}, 'j', 'gj', { buffer = true })
-        vim.keymap.set({'n', 'o', 'x'}, 'k', 'gk', { buffer = true })
-        vim.keymap.set({'n', 'o', 'x'}, '$', 'g$', { buffer = true })
-        vim.keymap.set({'n', 'o', 'x'}, '0', 'g0', { buffer = true })
-        vim.keymap.set({'n', 'o', 'x'}, '^', 'g^', { buffer = true })
-        vim.keymap.set({'n', 'o', 'x'}, '_', 'g^', { buffer = true })
-        vim.keymap.set('n', 'A', 'g$a', { buffer = true })
-        vim.keymap.set('n', 'I', 'g0i', { buffer = true })
-    end
-})
-
--- Buffer Navigation
+-- buffer stuff
 
 vim.keymap.set('n', '<leader>n', ':bnext<CR>')
 vim.keymap.set('n', '<leader>p', ':bprev<CR>')
 
--- Half-page scrolling with auto-center
+-- auto center
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
--- Spell
+-- spell
 
 vim.keymap.set('n', '<leader>c', '1z=')
 
 
--- Quickfix
+-- diagnostics
+
+vim.keymap.set('n', '<leader>xd', function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = 'Toggle diagnostics' })
+
+
+-- for leetcode/grinding
+vim.keymap.set('n', '<leader>z', function()
+    vim.g.focus_mode = not vim.g.focus_mode
+    vim.notify(vim.g.focus_mode and "focus on" or "focus off", vim.log.levels.INFO)
+end, { desc = 'Toggle focus mode (autocomplete off)' })
+
+
+-- quickfix
 
 vim.keymap.set('n', ']q', ':cnext<CR>zz')
 vim.keymap.set('n', '[q', ':cprev<CR>zz')

@@ -1,6 +1,5 @@
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
 
--- Remove Global Default Key mappings
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "gra")
 vim.keymap.del("n", "grr")
@@ -23,13 +22,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.lsp.buf.format({ async = true })
         end, bufopts)
 
-        keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
-        keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
+        keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, bufopts)
+        keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, bufopts)
         keymap.set("n", "<space>e", vim.diagnostic.open_float, bufopts)
     end
 })
 
--- Go: auto-organize imports on save
+-- auto imports
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
     callback = function()
@@ -52,8 +51,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Deferred so blink.cmp (BufReadPre event) loads before we require it
-vim.api.nvim_create_autocmd({ "BufReadPre", "InsertEnter" }, {
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufReadPost", "InsertEnter" }, {
     once = true,
     callback = function()
         vim.lsp.config("*", {
@@ -62,6 +60,22 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "InsertEnter" }, {
                 on_dir(vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)))
             end,
         })
-        vim.lsp.enable({ "ty", "pyright", "ruff", "gopls", "marksman", "lua_ls", "clangd", "jdtls", "zls" })
+        vim.lsp.config("harper_ls", {
+            filetypes = { "markdown" },
+            settings = {
+                ["harper-ls"] = {
+                    linters = {
+                        spell_check     = true,
+                        spelled_numbers = false,
+                        an_a            = true,
+                        sentence_capitalization = false,  -- too noisy for notes
+                        unclosed_quotes = true,
+                        correct_number_suffix = true,
+                        long_sentences  = false,          -- too noisy
+                    },
+                },
+            },
+        })
+        vim.lsp.enable({ "pyright", "ruff", "gopls", "marksman", "harper_ls", "lua_ls", "clangd", "jdtls", "zls" })
     end,
 })

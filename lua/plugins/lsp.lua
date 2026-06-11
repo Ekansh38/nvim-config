@@ -15,6 +15,7 @@ return {
                 "ruff",
                 "gopls",
                 "marksman",
+                "harper_ls",
                 "lua_ls",
                 "clangd",
                 "jdtls",

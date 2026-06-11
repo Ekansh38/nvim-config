@@ -21,6 +21,10 @@ return {
         dependencies = { "rafamadriz/friendly-snippets" },
         version = "*",
         opts = {
+            enabled = function()
+                return not vim.g.focus_mode
+            end,
+
             keymap = {
                 preset = "default",
                 ["<Up>"] = { "select_prev", "fallback" },

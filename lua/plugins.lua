@@ -17,5 +17,6 @@ require("lazy").setup({
   { import = "plugins.ui" },
   { import = "plugins.colorschemes" },
   { import = "plugins.utils" },
+  { import = "plugins.ai" },
 
 })
