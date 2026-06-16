@@ -81,6 +81,22 @@ return {
         cmd   = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft    = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
+        init  = function()
+            vim.g.mkdp_preview_options = {
+                mkit                = {},
+                katex               = {},
+                uml                 = {},
+                maid                = {},
+                disable_sync_scroll = 0,
+                sync_scroll_type    = "middle",
+                hide_yaml_meta      = 1,
+                sequence_diagrams   = {},
+                flowchart_diagrams  = {},
+                content_editable    = false,
+                disable_filename    = 0,
+                toc                 = {},
+            }
+        end,
         keys  = { { "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", ft = "markdown", desc = "Markdown preview in browser" } },
     },
 
