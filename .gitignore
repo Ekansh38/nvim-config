@@ -1,6 +1,2 @@
-# Claude Code local settings
-.claude/
-
-# Compiled spell files (generated from *.add automatically)
 spell/*.spl
 spell/*.sug
