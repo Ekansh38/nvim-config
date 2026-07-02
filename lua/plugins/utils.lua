@@ -82,6 +82,11 @@ return {
         ft    = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
         init  = function()
+            vim.g.mkdp_filetypes      = { "markdown" }
+            vim.g.mkdp_auto_close     = 0
+            vim.g.mkdp_combine_preview = 1
+            vim.g.mkdp_combine_preview_auto_refresh = 1
+            vim.g.mkdp_theme          = "dark"
             vim.g.mkdp_preview_options = {
                 mkit                = {},
                 katex               = {},
@@ -97,7 +102,10 @@ return {
                 toc                 = {},
             }
         end,
-        keys  = { { "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", ft = "markdown", desc = "Markdown preview in browser" } },
+        keys  = {
+            { "<leader>mp", "<cmd>MarkdownPreview<CR>",     ft = "markdown", desc = "Markdown preview (open)" },
+            { "<leader>ms", "<cmd>MarkdownPreviewStop<CR>", ft = "markdown", desc = "Markdown preview (stop)" },
+        },
     },
 
     { "wakatime/vim-wakatime", lazy = false },
