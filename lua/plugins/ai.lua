@@ -1,11 +1,17 @@
 return {
     {
-        "ThePrimeagen/99",
+        "Ekansh38/99",
         dependencies = { { "saghen/blink.compat", version = "2.*" } },
         config = function()
             local _99 = require("99")
             _99.setup({
-                provider = _99.Providers.ClaudeCodeProvider,
+                -- Route through opencode → OpenRouter. Requires:
+                --   1. `opencode` installed (brew: `brew install sst/tap/opencode`)
+                --   2. `OPENROUTER_API_KEY` exported in your shell
+                --   3. `~/.config/opencode/opencode.json` build agent set to an
+                --      `openrouter/<vendor>/<model>` id (see that file for defaults)
+                provider = _99.Providers.OpenCodeProvider,
+                model = "openrouter/z-ai/glm-5.2",
                 completion = {
                     source = "blink",
                 },
