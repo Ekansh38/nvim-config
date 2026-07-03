@@ -12,10 +12,19 @@ return {
                 --      `openrouter/<vendor>/<model>` id (see that file for defaults)
                 provider = _99.Providers.OpenCodeProvider,
                 model = "openrouter/z-ai/glm-5.2",
-                -- opencode.json has edit=ask, which auto-rejects in
-                -- non-interactive runs so 99 ops get empty responses.
-                -- This scopes permission skipping to 99-spawned opencode only.
-                provider_extra_args = { "--dangerously-skip-permissions" },
+                -- --dangerously-skip-permissions: opencode.json has edit=ask,
+                -- which auto-rejects in non-interactive runs, so 99 could
+                -- never write its answer file. Scoped to 99-spawned opencode.
+                --
+                -- --variant minimal: GLM at default reasoning effort gets
+                -- stuck in an agentic loop on large prompts (rewrites the
+                -- answer file every step until opencode's step limit kills
+                -- the run with exit 1). Minimal effort answers in seconds.
+                provider_extra_args = {
+                    "--variant",
+                    "minimal",
+                    "--dangerously-skip-permissions",
+                },
                 completion = {
                     source = "blink",
                 },
