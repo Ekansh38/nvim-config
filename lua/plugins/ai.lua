@@ -19,6 +19,8 @@ return {
             })
 
             vim.keymap.set("v", "<leader>9v", _99.visual,                    { desc = "99: AI on selection" })
+            vim.keymap.set("v", "<leader>9d", _99.discuss,                   { desc = "99: discuss selection (chat panel)" })
+            vim.keymap.set("n", "<leader>9d", _99.discuss,                   { desc = "99: toggle discuss panel" })
             vim.keymap.set("n", "<leader>9s", _99.search,                    { desc = "99: search codebase" })
             vim.keymap.set("n", "<leader>9x", _99.stop_all_requests,         { desc = "99: stop requests" })
             vim.keymap.set("n", "<leader>9o", _99.open,                      { desc = "99: open last interaction" })
