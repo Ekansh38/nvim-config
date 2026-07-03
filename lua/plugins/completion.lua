@@ -45,8 +45,14 @@ return {
                 default = { "lsp", "path", "snippets", "buffer" },
                 per_filetype = {
                     markdown = { "vault", "tags", "lsp", "path", "snippets", "buffer" },
+                    -- 99's prompt/discuss inputs: #rule and @file completions
+                    ["99prompt"] = { "99", "buffer" },
                 },
                 providers = {
+                    ["99"] = {
+                        name   = "99",
+                        module = "blink.compat.source",
+                    },
                     vault = {
                         name   = "Notes",
                         module = "notes.blink_source",
