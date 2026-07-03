@@ -12,6 +12,10 @@ return {
                 --      `openrouter/<vendor>/<model>` id (see that file for defaults)
                 provider = _99.Providers.OpenCodeProvider,
                 model = "openrouter/z-ai/glm-5.2",
+                -- opencode.json has edit=ask, which auto-rejects in
+                -- non-interactive runs so 99 ops get empty responses.
+                -- This scopes permission skipping to 99-spawned opencode only.
+                provider_extra_args = { "--dangerously-skip-permissions" },
                 completion = {
                     source = "blink",
                 },
