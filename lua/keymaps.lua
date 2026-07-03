@@ -58,3 +58,18 @@ vim.keymap.set('n', '[q', ':cprev<CR>zz')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+
+-- cx: send visual selection to cx doc chat
+vim.keymap.set("x", "<leader>cs", function()
+    vim.cmd('normal! \27') -- leave visual mode so '< '> marks update
+    local s, e = vim.fn.line("'<"), vim.fn.line("'>")
+    local out = { vim.fn.expand("%:p"), s .. "-" .. e }
+    vim.list_extend(out, vim.fn.getline(s, e))
+    vim.fn.mkdir(vim.fn.expand("~/.local/share/cx"), "p")
+    vim.fn.writefile(out, vim.fn.expand("~/.local/share/cx/selection.txt"))
+    vim.notify("cx: sent L" .. s .. "-" .. e, vim.log.levels.INFO)
+end, { desc = "Send selection to cx" })
+
+-- cx edits files on disk; pick them up automatically
+vim.opt.autoread = true
+
